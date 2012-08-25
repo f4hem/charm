@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  redirect_uri: MyString
+  client_id: 1
+  scope: MyString
+  response_type: MyString
+
+two:
+  redirect_uri: MyString
+  client_id: 1
+  scope: MyString
+  response_type: MyString

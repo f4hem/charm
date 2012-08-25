@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  scope: MyString
+  token_id: 1
+  details: MyText
+
+two:
+  scope: MyString
+  token_id: 1
+  details: MyText

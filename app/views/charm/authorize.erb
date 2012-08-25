@@ -1,0 +1,7 @@
+Authorize <%=@client.title%> ?
+
+<%= form_tag action: :authorize_accept, controller: :charm do %>
+  <%= hidden_field_tag :client_id, @client.id %>
+<%= submit_tag %>
+
+<% end %>
