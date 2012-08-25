@@ -2,6 +2,15 @@ Charm::Application.routes.draw do
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
+
+  get 'charm/authorize', to: 'charm#authorize', as: :charm_authorize
+  post 'charm/authorize', to: 'charm#authorize_accept', as: :charm_authorize_accept
+
+  post 'charm/token', to: 'charm#obtain_token', as: :charm_obtain_token
+
+
+  resources :clients
+
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
   # root to: 'welcome#index'
