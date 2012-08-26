@@ -18,7 +18,7 @@ Token - random string, identifies relationship between Client and User. Token is
 
 Authorization process in #OAuth2a:
 
-1. Client redirects user to `PROVIDER/charm/authorize` URL with following parameters:
+# Client redirects user to `PROVIDER/charm/authorize` URL with following parameters:
 * client_id (required)
 Identificator of your application
 * scope (optional)
@@ -30,7 +30,7 @@ Any Provider-specific data, for example how page should be rendered - popup|page
 * state (optional)
 Any arbitary string, will be sent back on Client's redirect_uri. Should be used to prevent CSRF attack(send random value and save it in user's session. when he is back check equality).
 
-2. User clicks either Accept or Reject. If User has granted authorization for your application:
+# User clicks either Accept or Reject. If User has granted authorization for your application:
 if response_type is 'code'
 Provider creates a new _expired_ token for your Client that gives access to Resources. User is redirected back to your application with following parameters:
 * token
@@ -43,12 +43,13 @@ Arbitary string you sent in authorization URL.
 if response_type is 'token'
 You will get token(not expired), state(if used) and expire_at params on your redirect_uri in hashbang(#). location.hash is not sent on server-side thus you will need to extract it with javascript and then use.
 
-3. When you get a token first time with response_type=code and when some tokens are expired you need to refresh them at `PROVIDER/charm/token` with following params:
+# When you get a token first time with response_type=code and when some tokens are expired you need to refresh them at `PROVIDER/charm/token` with following params:
 * client_id and client_secret (required, client credentials)
 * token (required, it may be a string or an array of tokens for _mass refreshing_).
 Example:
 request:
-```{
+```
+{
 	client_id: '1',
 	client_secret: 's3c3r3t',
 	token: [
@@ -56,18 +57,21 @@ request:
 	  '23423ds..',
 	  ...
 	]
-}```
+}
+```
 response:
-```{
+```
+{
 	expire_in: 123123,
 	token: [
 	  'new 123asdf..',
 	  'new 23423ds..',
 	  ...
 	]
-}```
+}
+```
 
-4. When you have valid and not expired token you can use it to call Provider's API:
+# When you have valid and not expired token you can use it to call Provider's API:
 `API_DOMAIN/API_PATH/me?token=TOKEN`
 
 
