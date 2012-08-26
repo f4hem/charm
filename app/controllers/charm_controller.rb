@@ -15,7 +15,7 @@ class CharmController < ApplicationController
 
     @token = @client.tokens.new
 
-    @token.token = generate
+    @token.generate_token
     @token.user_id = 123 # = current_user
 
     if @client.response_type == 'code'
@@ -36,31 +36,44 @@ class CharmController < ApplicationController
   end
 
   def obtain_token
-    @expired_token = Charm::Token.find_by_token params[:token]
-    if @expired_token
-      @client = Charm::Client.find_by_id_and_client_secret(params[:client_id], params[:client_secret])
-      if @expired_token.client == @client
+    if params[:token].is_a?(String)
+      [params[:token]]
+    else
+      params[:token]
+    end
+    @client = Charm::Client.find_by_id_and_client_secret(params[:client_id], params[:client_secret])
+    @tokens = @client.tokens.where(token: [tokens]) 
 
-        @expired_token.refresh!
-        @expired_token.save
-
-        render json: {
-          token: @expired_token.token,
-          expire_at: @expired_token.expire_at
-        }
+    if @tokens
+      token_list = []
+      @tokens.each do |token|
+        token.refresh!
+        token.save
+        token_list.push token.token
+        expire_at ||= token.expire_at
       end
+
+      render(json: {
+        token: refreshed_tokens,
+        expire_at: expire_at
+      }, callback: params[:callback])
+
     end   
+
+
+  end
+
+  def inspect_token
+
 
   end
 
   private
 
-  def generate
-    SecureRandom.base64 256
-  end
 
   def prepare_environment
     @client = Charm::Client.find_by_id params[:client_id]
+    @token = Charm::Token.find_by_token params[:token]
 
   end
 

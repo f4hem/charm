@@ -5,7 +5,26 @@ class Charm::Token < ActiveRecord::Base
 
   belongs_to :client
 
+  def generate_token
+    token = SecureRandom.base64 256
+  end
+
   
+  def get_scopes
+    scope.split(',')
+  end
+
+  def get_scopes_details
+    get_scopes.map{|key|
+      Charm.scopes[key].tap{|hash|
+        hash[:key] = key
+      }
+    }
+  end
+
+  def has_scope?(scope)
+    get_scopes.include? scope.to_s
+  end
 
 
   def expired?
@@ -14,6 +33,11 @@ class Charm::Token < ActiveRecord::Base
 
   def expire!
   	expire_at = Time.now
+  end
+
+  def refresh!
+    generate_token
+    expire_at = Time.now + 3.days
   end
 
   def self.clean_invalid
