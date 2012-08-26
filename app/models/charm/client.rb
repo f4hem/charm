@@ -4,5 +4,4 @@ class Charm::Client < ActiveRecord::Base
   self.table_name = 'charm_clients'
 
   has_many :tokens
-
 end
