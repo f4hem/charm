@@ -1,16 +1,4 @@
 GIT
-  remote: git://github.com/rails/activerecord-deprecated_finders.git
-  revision: fe150f26f009cef370658b7c19db1629b2448952
-  specs:
-    activerecord-deprecated_finders (0.0.1)
-
-GIT
-  remote: git://github.com/rails/arel.git
-  revision: e032dabdb2adb34e3db8cd35e9f58bc0536475c1
-  specs:
-    arel (3.0.2.20120819075748)
-
-GIT
   remote: git://github.com/rails/coffee-rails.git
   revision: 82da9a9997a6602cbe4934e06e6823d0fd85283c
   specs:
@@ -19,14 +7,8 @@ GIT
       railties (>= 4.0.0.beta, < 5.0)
 
 GIT
-  remote: git://github.com/rails/journey.git
-  revision: e4755e0ba27a4d6863656031e7c1ce26a7413ca6
-  specs:
-    journey (2.0.0.20120723141804)
-
-GIT
   remote: git://github.com/rails/rails.git
-  revision: d850fdf5667f4e6a661531d48780c30ec46267f9
+  revision: 844e944465beb37bd19bdfdedc19eba54479f39e
   specs:
     actionmailer (4.0.0.beta)
       actionpack (= 4.0.0.beta)
@@ -79,15 +61,17 @@ GIT
 
 GIT
   remote: git://github.com/rails/sprockets-rails.git
-  revision: 35465692c8bacea1b1c202d4cffef1f1b2d8981c
+  revision: 63e890e536790a07264107566fb462fc0daa0dab
   specs:
-    sprockets-rails (1.0.0)
+    sprockets-rails (1.0.1)
       railties (>= 4.0.0.beta, < 5.0)
       sprockets (~> 2.4)
 
 GEM
   remote: https://rubygems.org/
   specs:
+    activerecord-deprecated_finders (0.0.1)
+    arel (3.0.2.20120819075748)
     builder (3.0.0)
     coderay (1.0.7)
     coffee-script (2.2.0)
@@ -99,6 +83,7 @@ GEM
       multi_json (~> 1.0)
     hike (1.2.1)
     i18n (0.6.0)
+    journey (2.0.0.20120723141804)
     jquery-rails (2.1.1)
       railties (>= 3.1.0, < 5.0)
       thor (~> 0.14)
@@ -148,10 +133,11 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  activerecord-deprecated_finders!
-  arel!
+  activerecord
+  activerecord-deprecated_finders
+  arel
   coffee-rails!
-  journey!
+  journey
   jquery-rails
   pry-rails
   rails!

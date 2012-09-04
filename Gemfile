@@ -1,9 +1,10 @@
 source 'https://rubygems.org'
 
-gem 'rails',     github: 'rails/rails'
-gem 'journey',   github: 'rails/journey'
-gem 'arel',      github: 'rails/arel'
-gem 'activerecord-deprecated_finders', github: 'rails/activerecord-deprecated_finders'
+gem 'rails', github: 'rails/rails'
+gem 'journey' #,   github: 'rails/journey'
+gem 'arel' #,      github: 'rails/arel'
+gem 'activerecord'
+gem 'activerecord-deprecated_finders' #, github: 'rails/activerecord-deprecated_finders'
 gem 'pry-rails'
 gem 'sqlite3'
 

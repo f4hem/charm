@@ -1,7 +1,22 @@
 Authorize <%=@client.title%> ?
 
-<%= form_tag action: :authorize_accept, controller: :charm do %>
-  <%= hidden_field_tag :client_id, @client.id %>
+<div>
+	#hidden data in form_tag
+<%= form_tag(action: :authorize_accept, controller: :charm) do %>
+<%={client_id: @client.id, 
+	scope: @client.scope,
+    state: params[:state],
+    valid_thru: params[:valid_thru]}.map do |k,v| 
+hidden_field_tag k, v
+end.join.html_safe %>
+ Grant these privilagies: 
+ <% [:read].each do |scope| %>
+
+
+<% end %>
+
 <%= submit_tag %>
 
 <% end %>
+
+</div>

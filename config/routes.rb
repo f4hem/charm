@@ -3,10 +3,11 @@ Charm::Application.routes.draw do
   # first created -> highest priority.
 
 
-  get 'charm/authorize', to: 'charm#authorize', as: :charm_authorize
-  post 'charm/authorize', to: 'charm#authorize_accept', as: :charm_authorize_accept
+  match 'charm/authorize', to: 'charm#authorize', as: :charm_authorize, via: [:get, :post]
+  match 'charm/authorize_accept', to: 'charm#authorize_accept', as: :charm_authorize_accept, via: [:get, :post]
 
-  post 'charm/token', to: 'charm#obtain_token', as: :charm_obtain_token
+  match 'charm/token', to: 'charm#obtain_token', as: :charm_obtain_token, via: [:get, :post]
+  match 'charm/inspect_token', to: 'charm#inspect_token', as: :charm_inspect_token, via: [:get, :post]
 
 
   resources :clients

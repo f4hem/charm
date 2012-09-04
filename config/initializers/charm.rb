@@ -8,5 +8,5 @@ def Charm.scopes
 	  title: "Read access to your account",
 	  description: "blah blah"	  
 	}
-  } 
+ }
 end
