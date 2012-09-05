@@ -43,7 +43,8 @@ Arbitary string you sent in authorization URL.
 if response_type is 'token'
 You will get token(not expired), state(if used) and expire_at params on your redirect_uri in hashbang(#). location.hash is not sent on server-side thus you will need to extract it with javascript and then use.
 
-### When you get a token first time with response_type=code and when some tokens are expired you need to refresh them at `PROVIDER/charm/token` with following params:
+### When you get token first time or token is expired
+You need to refresh expired tokens at `PROVIDER/charm/token` with following params:
 * client_id and client_secret (required, client credentials)
 * token (required, it may be a string or an array of tokens for _mass refreshing_).
 Example:
@@ -65,16 +66,19 @@ response:
 
 ```
 {
-	expire_in: 123123,
 	token: [
-	  'new 123asdf..',
-	  'new 23423ds..',
-	  ...
+	  {
+	    token: "...."
+	  },
+	  {
+	    token: "...."
+	  }
 	]
 }
 ```
 
-# When you have valid and not expired token you can use it to call Provider's API:
+### When you have valid and not expired token 
+You can use it to call Provider's API:
 `API_DOMAIN/API_PATH/me?token=TOKEN`
 
 
